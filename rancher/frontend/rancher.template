@@ -1,0 +1,35 @@
+server {
+    listen              443 ssl http2;
+    server_name         ${RANCHER_DNS};
+    ssl_certificate     /etc/letsencrypt/live/${RANCHER_DNS}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${RANCHER_DNS}/privkey.pem;
+
+
+    location / {
+        proxy_set_header Host ${DOLLAR}host;
+        proxy_set_header X-Forwarded-Proto ${DOLLAR}scheme;
+        proxy_set_header X-Forwarded-Port ${DOLLAR}server_port;
+        proxy_set_header X-Forwarded-For ${DOLLAR}proxy_add_x_forwarded_for;
+        proxy_pass http://rancher;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade ${DOLLAR}http_upgrade;
+        proxy_set_header Connection ${DOLLAR}connection_upgrade;
+        # This allows the ability for the execute shell window to remain open for up to 30 minutes. Without this parameter, the default is 1 minute and will automatically close.
+        proxy_read_timeout 1800s;
+    }
+}
+
+server {
+    listen 80;
+    server_name ${RANCHER_DNS};
+    return 301 https://${DOLLAR}server_name${DOLLAR}request_uri;
+}
+
+upstream rancher {
+    server rancher-server:8080;
+}
+
+map ${DOLLAR}http_upgrade ${DOLLAR}connection_upgrade {
+    default Upgrade;
+    ''      close;
+}
