@@ -1,26 +1,24 @@
 version: '3'
-  services:
-    frontend:
-      build:
-        context: ./frontend
-        args:
-          - RANCHER_DNS=${RANCHER_DNS}
-      restart: unless-stopped
-      container_name: frontend
-      ports:
-        - 80:80/tcp
-        - 443:443/tcp
-      environment:
-        - CERTBOT_EMAIL=${CERTBOT_EMAIL}
-      volumes:
-        - /opt/rancher/nginx-log:/var/log/nginx
-    server:
-      image: rancher/server
-      restart: unless-stopped
-      container_name: rancher-server
-      ports:
-        - "127.0.0.1:8080:8080"
-      volumes:
-        - /opt/rancher/mysql:/var/lib/mysql
-        - /opt/rancher/mysql-log:/var/log/mysql
-        - /opt/rancher/cattle:/var/log/cattle
+services:
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    container_name: frontend
+    ports:
+      - 80:80/tcp
+      - 443:443/tcp
+    environment:
+      - CERTBOT_EMAIL=${CERTBOT_EMAIL}
+      - RANCHER_DNS=${RANCHER_DNS}
+    volumes:
+      - /opt/rancher/nginx-log:/var/log/nginx
+  server:
+    image: rancher/server
+    restart: unless-stopped
+    container_name: rancher-server
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - /opt/rancher/mysql:/var/lib/mysql
+      - /opt/rancher/mysql-log:/var/log/mysql
+      - /opt/rancher/cattle:/var/log/cattle
