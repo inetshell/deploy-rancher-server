@@ -11,7 +11,7 @@ services:
       - CERTBOT_EMAIL=${CERTBOT_EMAIL}
       - RANCHER_DNS=${RANCHER_DNS}
     volumes:
-      - ../volumes/nginx-log:/var/log/nginx
+      - ../volumes/frontend-log:/var/log/nginx
   server:
     image: rancher/server
     restart: unless-stopped
