@@ -11,5 +11,4 @@ if [ -z "${CERTBOT_EMAIL}" ] || [ -z ${RANCHER_DNS} ]; then
     exit 1
 fi
 
-cd docker
-docker-compose --project-name 'rancher' -f docker/docker-compose.yml
+docker-compose up --build -d --project-name 'rancher' -f docker/docker-compose.yml
