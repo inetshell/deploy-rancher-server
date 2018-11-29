@@ -6,6 +6,10 @@ Rancher 1.6 with the following configuration:
 - HTTPS support with Let's Encrypt certificate
 - Tested on CentOS 7.5
 
+## Requirements:
+* docker-ce-18.06.x
+* docker-compose
+
 ## To deploy:
 ```
 chmod u+x deploy.sh
