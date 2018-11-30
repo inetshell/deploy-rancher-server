@@ -19,3 +19,7 @@ export RANCHER_VERSION=stable
 export RANCHER_VOLUME="/rancher/volume/"
 ./deploy.sh
 ```
+
+## To do:
+* Add option to use with external MySQL
+
