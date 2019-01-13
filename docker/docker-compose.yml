@@ -1,9 +1,9 @@
 version: '3'
 services:
-  frontend:
-    build: ./frontend
+  proxy:
+    build: ./rancher-proxy
     restart: unless-stopped
-    container_name: frontend
+    container_name: rancher-proxy
     ports:
       - 80:80/tcp
       - 443:443/tcp
@@ -11,7 +11,7 @@ services:
       - CERTBOT_EMAIL=${CERTBOT_EMAIL}
       - RANCHER_DNS=${RANCHER_DNS}
     volumes:
-      - ${RANCHER_VOLUME}/frontend-log:/var/log/nginx
+      - ${RANCHER_VOLUME}/rancher-proxy:/var/log/nginx
   server:
     image: rancher/server:${RANCHER_VERSION}
     restart: unless-stopped
