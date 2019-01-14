@@ -16,7 +16,6 @@ chmod u+x deploy.sh
 export CERTBOT_EMAIL=info@example.com
 export RANCHER_DNS=rancher.example.com
 export RANCHER_VERSION=stable
-export RANCHER_VOLUME="/rancher/volume/"
 ./deploy.sh
 ```
 

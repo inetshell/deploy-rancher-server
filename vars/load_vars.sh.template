@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 export CERTBOT_EMAIL=test@example.com
-export RANCHER_VOLUME=/rancher/deploy/volume/
-export RANCHER_VERSION=stable
 export RANCHER_DNS=master01.example.com
+export RANCHER_VERSION=stable
