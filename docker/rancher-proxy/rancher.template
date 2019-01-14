@@ -19,12 +19,6 @@ server {
     }
 }
 
-server {
-    listen 80;
-    server_name ${RANCHER_DNS};
-    return 301 https://${DOLLAR}server_name${DOLLAR}request_uri;
-}
-
 upstream rancher {
     server rancher-server:8080;
 }
