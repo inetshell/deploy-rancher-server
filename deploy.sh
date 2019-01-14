@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 export SCRIPT_HOME="$( cd "$(dirname "${0}")" ; pwd -P )"
-export VARS_FILE="vars/load_vars.sh"
+export VARS_FILE="${SCRIPT_HOME}/vars/load_vars.sh"
 
 if [[ -f "${VARS_FILE}" ]]; then
     echo "Loading variables file ${VARS_FILE}"
