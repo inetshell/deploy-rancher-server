@@ -18,6 +18,10 @@ services:
     container_name: rancher-server
     ports:
       - "127.0.0.1:8080:8080"
+    ulimits:
+      nofile:
+        hard: 80000
+        soft: 80000
     volumes:
       - ./volumes/rancher-mysql:/var/lib/mysql
       - ./volumes/rancher-mysql-log:/var/log/mysql
