@@ -11,7 +11,7 @@ services:
       - CERTBOT_EMAIL=${CERTBOT_EMAIL}
       - RANCHER_DNS=${RANCHER_DNS}
     volumes:
-      - ./volumes/rancher-proxy:/var/log/nginx
+      - ./rancher-proxy/log:/var/log/nginx
   server:
     image: rancher/server:${RANCHER_VERSION}
     restart: unless-stopped
@@ -23,6 +23,5 @@ services:
         hard: 80000
         soft: 80000
     volumes:
-      - ./volumes/rancher-mysql:/var/lib/mysql
-      - ./volumes/rancher-mysql-log:/var/log/mysql
-      - ./volumes/rancher-cattle:/var/log/cattle
+      - ./rancher-server/mysql:/var/lib/mysql
+      - ./rancher-server/log:/var/log

@@ -4,7 +4,6 @@ server {
     ssl_certificate     /etc/letsencrypt/live/${RANCHER_DNS}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${RANCHER_DNS}/privkey.pem;
 
-
     location / {
         proxy_set_header Host ${DOLLAR}host;
         proxy_set_header X-Forwarded-Proto ${DOLLAR}scheme;
@@ -14,7 +13,9 @@ server {
         proxy_http_version 1.1;
         proxy_set_header Upgrade ${DOLLAR}http_upgrade;
         proxy_set_header Connection ${DOLLAR}connection_upgrade;
-        # This allows the ability for the execute shell window to remain open for up to 30 minutes. Without this parameter, the default is 1 minute and will automatically close.
+
+        # This allows the ability for the execute shell window to remain open for up to 30 minutes.
+        # Without this parameter, the default is 1 minute and will automatically close.
         proxy_read_timeout 1800s;
     }
 }

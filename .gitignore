@@ -1,3 +1,5 @@
 .idea
-volumes/
+rancher-proxy/log
+rancher-server/mysql
+rancher-server/log
 vars/load_vars.sh
