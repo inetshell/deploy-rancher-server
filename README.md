@@ -20,5 +20,5 @@ export RANCHER_VERSION=stable
 ```
 
 ## To do:
-* Add option to use with external MySQL
+* Add external MySQL backend support
 
